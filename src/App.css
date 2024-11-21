@@ -2,3 +2,8 @@ h1 {
     color: black;
     size: 10px;
 }
+
+.container {
+    margin: 1rem;
+    text-align: center;
+}
