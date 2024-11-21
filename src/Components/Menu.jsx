@@ -1,10 +1,16 @@
 import React from 'react';
 import './Menu.css';
+import menuBanner from '../Images/menuBanner.png'
 
 function Menu() {
   return (
     <>
-        <img src={require('../Images/Menu_Banner')} alt="Menu Banner" />
+        <div className='menu-container'>
+            <div className='menu-banner'></div>
+            <div className='menu-list'>
+                <h1>Hewwo</h1>
+            </div>
+        </div>
     </>
   )
 }
