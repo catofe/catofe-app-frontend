@@ -1,4 +1,9 @@
 .container {
-    margin: 1rem;
+    margin: 0;
     text-align: center;
+<<<<<<< HEAD
 }
+=======
+    width: 100%;
+}
+>>>>>>> Testing
