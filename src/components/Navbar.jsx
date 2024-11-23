@@ -1,4 +1,4 @@
-import React, { Children, useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
@@ -8,10 +8,10 @@ function Navbar() {
   const [userId, setUserId] = useContext(UserContext);
 
   let content;
-  if (userId) {
+  if (!userId) {
     content = <div></div>;
   }
-  if (!userId) {
+  if (userId) {
     content = (
       <nav className="navbar">
         <a href="/" className="navbar-logo">
