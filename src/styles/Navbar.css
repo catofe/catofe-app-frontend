@@ -25,6 +25,8 @@ body {
     margin: 0;
     list-style: none;
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
 }
 
@@ -43,4 +45,8 @@ body {
 
 .navbar a:hover {
     background-color: #777;
+}
+
+.user-profile-icon {
+    font-size: 24px;
 }
