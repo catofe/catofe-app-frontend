@@ -10,7 +10,7 @@ import LoginRegister from "./Components/LoginRegister/LoginRegister";
 export const UserContext = createContext();
 
 function App() {
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState(false);
 
   return (
     <UserContext.Provider value={[userId, setUserId]}>
@@ -20,6 +20,7 @@ function App() {
         <Route path="/Order" element={<Order />} />
         <Route path="/Profile" element={<Profile />} />
       </Routes>
+      <button onClick={() => setUserId(!userId)}>Switch User State</button>
     </UserContext.Provider>
   );
 }
