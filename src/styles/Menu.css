@@ -4,10 +4,10 @@
     box-sizing: border-box;
 }
 
-.menu-banner {    
+.menu-banner {
     width: 100vw;
     height: 50vh;
-    background-image: url(../Images/menuBanner.png);
+    background-image: url(../images/menuBanner.png);
     background-position: center;
     background-size: cover;
     position: absolute;
