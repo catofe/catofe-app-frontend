@@ -3,18 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body { 
+body {
     font-family: "Poppins", sans-serif;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
     min-height: 100vh;
-    background:rgb(243, 222, 186);
+    background: rgb(243, 222, 186);
 
 }
