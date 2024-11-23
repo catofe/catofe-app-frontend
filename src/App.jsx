@@ -21,7 +21,6 @@ function App() {
         <Route path="/order" element={<Order />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
-      <button onClick={() => setUserId(!userId)}>Switch User State</button>
     </UserContext.Provider>
   );
 }
