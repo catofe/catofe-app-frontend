@@ -11,7 +11,7 @@ import Register from "./pages/Register";
 export const UserContext = createContext();
 
 function App() {
-  const [userId, setUserId] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   return (
     <UserContext.Provider value={[userId, setUserId]}>
