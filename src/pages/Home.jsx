@@ -17,6 +17,7 @@ function Home() {
   return (
     <div>
       <Menu />
+      <p>{userId}</p>
     </div>
   );
 }

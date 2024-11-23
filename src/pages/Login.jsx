@@ -1,17 +1,48 @@
 import React, { useState, useContext } from "react";
 import { IoMail, IoLockClosed } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { UserContext } from "../App";
 import "../styles/Login.css";
 
 function Login() {
   const [userId, setUserId] = useContext(UserContext);
+  const [authInfo, setAuthInfo] = useState({
+    email: "",
+    password: "",
+  });
+
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    setUserId(!userId);
-    navigate("/");
+  const handleEmailInput = (e) => {
+    setAuthInfo({
+      ...authInfo,
+      email: e.target.value,
+    });
+  };
+
+  const handlePasswordInput = (e) => {
+    setAuthInfo({
+      ...authInfo,
+      password: e.target.value,
+    });
+  };
+
+  const handleSubmitAuthInfo = () => {
+    axios
+      .get(
+        `http://localhost:3000/api/user/auth/${authInfo.email}/${authInfo.password}`,
+      )
+      .then((res) => {
+        setUserId(res.data);
+        console.log(res.data);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.warn("An error happened. Please check console");
+        console.error(error);
+      });
   };
 
   return (
@@ -26,15 +57,27 @@ function Login() {
           <IoMail />
           <label htmlFor="">Email</label>
         </div>
-        <input className="login-field" type="email" />
+        <input
+          className="login-field"
+          type="email"
+          onChange={(e) => handleEmailInput(e)}
+        />
 
         <div className="login-label">
           <IoLockClosed />
           <label htmlFor="">Password</label>
         </div>
-        <input className="login-field" type="password" />
+        <input
+          className="login-field"
+          type="password"
+          onChange={(e) => handlePasswordInput(e)}
+        />
 
-        <button className="login-button" type="submit" onClick={handleLogin}>
+        <button
+          className="login-button"
+          type="submit"
+          onClick={handleSubmitAuthInfo}
+        >
           <b>Login</b>
         </button>
 
