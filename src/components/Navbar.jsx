@@ -1,17 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
-import { UserContext } from "../App";
-
 function Navbar() {
-  const [userId, setUserId] = useContext(UserContext);
+  const [visible, setVisible] = useState(true);
+  const location = useLocation();
 
   let content;
-  if (!userId) {
+  if (location.pathname == "/login" || location.pathname == "/register") {
     content = <div></div>;
-  }
-  if (userId) {
+  } else {
     content = (
       <nav className="navbar">
         <a href="/" className="navbar-logo">

@@ -1,14 +1,17 @@
 import React, { useState, useContext } from "react";
 import { IoMail, IoLockClosed } from "react-icons/io5";
+import { Link, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../App";
 import "../styles/Login.css";
 
 function Login() {
   const [userId, setUserId] = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     setUserId(!userId);
+    navigate("/");
   };
 
   return (
@@ -36,7 +39,10 @@ function Login() {
         </button>
 
         <p className="login-register-link">
-          Don't have an account? <b>Create one here</b>
+          Don't have an account?
+          <Link to="/register">
+            <b> Create one here</b>
+          </Link>
         </p>
       </div>
     </div>
