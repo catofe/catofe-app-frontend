@@ -19,8 +19,8 @@ function Navbar() {
         </a>
         <ul>
           <Link to="/">Home</Link>
-          <Link to="/Order">Order</Link>
-          <Link to="/Profile">Profile</Link>
+          <Link to="/order">Order</Link>
+          <Link to="/profile">Profile</Link>
         </ul>
       </nav>
     );
