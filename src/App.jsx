@@ -1,28 +1,30 @@
-import React, {useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
-import Navbar from './Components/Navbar';
-import Home from './Pages/Home';
-import Order from './Pages/Order';
-import Profile from './Pages/Profile';
-import LoginRegister from './Components/LoginRegister/LoginRegister';
+import React, { createContext, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Order from "./pages/Order";
+import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
+export const UserContext = createContext();
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [userId, setUserId] = useState(false);
 
   return (
-    <>
-      <LoginRegister/> 
-        <Navbar />
-        <div className='container'>
-          <Routes>
-            <Route path='/' element={<Home />}/>
-            <Route path='/Order' element={<Order />}/>
-            <Route path='/Profile' element={<Profile />}/>
-          </Routes>
-        </div>
-    </>
-  )
+    <UserContext.Provider value={[userId, setUserId]}>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/order" element={<Order />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </UserContext.Provider>
+  );
 }
 
-export default App
+export default App;
