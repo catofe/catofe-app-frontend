@@ -14,7 +14,7 @@ export const UserContext = createContext();
 
 function App() {
   // const [userId, setUserId] = useState(null);
-  const [userId, setUserId] = useState("6732f1698a854a58e5ec9955");
+  const [userId, setUserId] = useState(null);
 
   return (
     <UserContext.Provider value={[userId, setUserId]}>
