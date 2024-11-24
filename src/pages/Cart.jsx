@@ -65,6 +65,19 @@ function Cart() {
       });
   };
 
+  const handleCheckout = () => {
+    axios
+      .put(`http://localhost:3000/api/order/${userId}/generate_order/`)
+      .then((res) => {
+        setItems(res.data);
+        navigate("/orders");
+      })
+      .catch((error) => {
+        console.warn("An error happened. Please check console");
+        console.error(error);
+      });
+  };
+
   const handleUpdate = () => {
     axios
       .put(
@@ -113,7 +126,7 @@ function Cart() {
             </p>
           </div>
           <div className="checkout-footer">
-            <button className="checkout-button">
+            <button className="checkout-button" onClick={handleCheckout}>
               <b>Checkout</b>
             </button>
           </div>

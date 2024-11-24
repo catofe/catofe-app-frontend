@@ -18,7 +18,7 @@ function Navbar() {
         <ul>
           <Link to="/menu">Menu</Link>
           <Link to="/cart">Cart</Link>
-          <Link to="/order">Order</Link>
+          <Link to="/orders">Order</Link>
           <Link to="/profile">
             <FaCircleUser className="user-profile-icon" />
           </Link>
