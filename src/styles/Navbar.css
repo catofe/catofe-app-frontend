@@ -47,6 +47,14 @@ body {
     background-color: #777;
 }
 
+.current {
+    padding-bottom: 1rem;
+    margin-bottom: -0.8rem;
+    background: white;
+    color: black;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
 .user-profile-icon {
     font-size: 24px;
 }

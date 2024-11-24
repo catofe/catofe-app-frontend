@@ -19,6 +19,7 @@ function Cart() {
       .get(`http://localhost:3000/api/cart/${userId}/detailed`)
       .then((res) => {
         setItems(res.data);
+        console.log(res.data);
       })
       .catch((error) => {
         console.warn("An error happened. Please check console");
