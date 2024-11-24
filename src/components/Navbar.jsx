@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { FaCircleUser } from "react-icons/fa6";
 import "../styles/Navbar.css";
 
 function Navbar() {
@@ -15,9 +16,12 @@ function Navbar() {
           Catofe
         </a>
         <ul>
-          <Link to="/">Home</Link>
+          <Link to="/menu">Menu</Link>
+          <Link to="/cart">Cart</Link>
           <Link to="/order">Order</Link>
-          <Link to="/profile">Profile</Link>
+          <Link to="/profile">
+            <FaCircleUser className="user-profile-icon" />
+          </Link>
         </ul>
       </nav>
     );
