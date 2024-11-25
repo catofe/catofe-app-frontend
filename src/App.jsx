@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
+import Menu from "./pages/Menu";
 
 export const UserContext = createContext();
 
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/menu" element={<Menu />} />
         <Route path="/register" element={<Register />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/profile" element={<Profile />} />

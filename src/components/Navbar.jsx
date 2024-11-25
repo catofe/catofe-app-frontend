@@ -27,7 +27,7 @@ function Navbar() {
     );
   }
 
-  return <div>{content}</div>;
+  return <div className="navbar-container">{content}</div>;
 }
 
 export default Navbar;
