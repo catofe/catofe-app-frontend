@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { UserContext } from "../App";
 import CartItem from "../components/CartItem";
+import "../styles/Cart.css";
 
 function Cart() {
   const [userId, setUserId] = useContext(UserContext);
@@ -39,7 +40,7 @@ function Cart() {
     temp[index].quantity = Math.max(0, temp[index].quantity - 1);
 
     if (temp[index].quantity <= 0) {
-      handleDelete(index);
+      handleRemove(index);
       return;
     }
 
@@ -47,7 +48,7 @@ function Cart() {
     handleUpdate();
   };
 
-  const handleDelete = (index) => {
+  const handleRemove = (index) => {
     const temp = [...items];
     console.log(temp[index]);
 
@@ -57,6 +58,19 @@ function Cart() {
       )
       .then((res) => {
         setItems(res.data);
+      })
+      .catch((error) => {
+        console.warn("An error happened. Please check console");
+        console.error(error);
+      });
+  };
+
+  const handleCheckout = () => {
+    axios
+      .put(`http://localhost:3000/api/order/${userId}/generate_order/`)
+      .then((res) => {
+        setItems(res.data);
+        navigate("/orders");
       })
       .catch((error) => {
         console.warn("An error happened. Please check console");
@@ -80,16 +94,54 @@ function Cart() {
   };
 
   return (
-    <div>
-      {items.map((item, index) => (
-        <CartItem
-          item={item}
-          index={index}
-          increment={handleIncrement}
-          decrement={handleDecrement}
-          remove={handleDelete}
-        />
-      ))}
+    <div className="cart-container">
+      <div className="items-section">
+        {items.map((item, index) => (
+          <CartItem
+            item={item}
+            index={index}
+            increment={handleIncrement}
+            decrement={handleDecrement}
+            remove={handleRemove}
+          />
+        ))}
+      </div>
+      <div className="checkout-container">
+        <div className="checkout-section">
+          <h2 className="checkout-header">
+            <b>Checkout Info</b>
+          </h2>
+          {items.map((item) => createCheckoutItem(item))}
+          <hr />
+          <div className="checkout-total">
+            <p className="text">
+              <b>Total</b>
+            </p>
+            <p className="total">
+              ₱
+              {items.reduce(
+                (total, item) => total + item.product.price * item.quantity,
+                0,
+              )}
+            </p>
+          </div>
+          <div className="checkout-footer">
+            <button className="checkout-button" onClick={handleCheckout}>
+              <b>Checkout</b>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function createCheckoutItem(item) {
+  return (
+    <div className="checkout-item">
+      <p className="name">{item.product.name}</p>
+      <p className="quantity">{item.quantity}x</p>
+      <p className="price">₱{item.product.price}</p>
     </div>
   );
 }
