@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.menu-banner {
+    width: 100vw;
+    height: 50vh;
+    background-image: url(../images/menuBanner.png);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+
+.menu-list {
+    padding-top: 27rem;
+    text-align: center;
+}
+
+.menu-list h1 {
+    font-size: 4rem;
+}
