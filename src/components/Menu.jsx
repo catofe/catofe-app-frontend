@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Menu.css";
-import menuBanner from "../images/menuBanner.png";
+import menuBanner from "/menu_banner.png";
 
 function Menu() {
   return (
