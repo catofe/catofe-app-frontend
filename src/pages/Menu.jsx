@@ -4,7 +4,6 @@ import axios from "axios";
 
 import { UserContext } from "../App";
 import MenuItem from "../components/MenuItem";
-
 function Menu() {
   const [userId, setUserId] = useContext(UserContext);
   const [products, setProducts] = useState([]);
@@ -49,7 +48,7 @@ function Menu() {
   };
 
   return (
-    <div className="menu-container">
+    <div className="menu-container mt-4 lg:mx-32 md:mx-8">
       {products.map((product) => (
         <MenuItem product={product} add={handleAdd} />
       ))}

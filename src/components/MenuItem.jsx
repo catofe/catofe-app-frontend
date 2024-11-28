@@ -1,26 +1,59 @@
 import React from "react";
 import "../styles/MenuItem.css";
 import { MdEmojiFoodBeverage } from "react-icons/md";
+import { FaShoppingCart } from "react-icons/fa";
+import { PiBowlFoodFill, PiBreadFill } from "react-icons/pi";
+import { RiDrinks2Fill } from "react-icons/ri";
 
 function MenuItem({ product, add }) {
   if (!product.available) {
     return "";
   }
 
+  const placeholderIcon = () => {
+    if (product.category === "food") {
+      return <PiBreadFill />;
+    }
+    if (product.category === "beverage hot") {
+      return <MdEmojiFoodBeverage />;
+    }
+    if (product.category === "beverage cold") {
+      return <RiDrinks2Fill />;
+    }
+    return <MdEmojiFoodBeverage />;
+  };
+
   return (
-    <div className="menu-item-container">
-      <div className="menu-item-picture">
-        <MdEmojiFoodBeverage className="menu-item-icon" />
+    <div className="p-3 m-4 rounded-lg border-2 bg-white border-slate-200 shadow-lg flex-1 hover:shadow-xl transition-shadow">
+      <div className="menu-item-picture hover:scale-115 hover:-translate-y-2 hover:rounded-lg hover:shadow-lg hover:border-slate-900 transition-all">
+        {placeholderIcon()}
       </div>
-      <h3 className="menu-item-name">
+      <h3 className="text-xl mb-2">
         <b>{product.name}</b>
       </h3>
-      <p className="menu-item-price">₱{product.price}</p>
-      <p className="menu-item-description">{product.description}</p>
+      <div className="mb-4 flex flex-row gap-2">
+        {product.category.split(" ").map((tag) => {
+          return (
+            <div className="bg-slate-200 px-2 rounded-xl">
+              {tag.charAt(0).toUpperCase() + tag.slice(1)}
+            </div>
+          );
+        })}
+      </div>
+      <p className="h-16 mb-1 text-gray-500">{product.description}</p>
 
-      <button className="menu-item-button" onClick={() => add(product._id)}>
-        <b>Add To Cart</b>
-      </button>
+      <div className="flex flex-row justify-center items-center">
+        <p className=" flex-1 text-lg">
+          <b>₱ {product.price}.00</b>
+        </p>
+        <button
+          className="p-2 px-4 rounded text-white bg-blue-500 flex flex-row justify-center items-center hover:bg-blue-600 active:bg-blue-800 transition-colors"
+          onClick={() => add(product._id)}
+        >
+          <FaShoppingCart className="mr-2" />
+          <b className="text-base">Add To Cart</b>
+        </button>
+      </div>
     </div>
   );
 }
