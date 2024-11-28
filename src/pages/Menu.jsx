@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { IoRestaurant } from "react-icons/io5";
 import { UserContext } from "../App";
 import MenuItem from "../components/MenuItem";
 function Menu() {
@@ -49,9 +49,10 @@ function Menu() {
 
   return (
     <div className="lg:mx-32 md:mx-8">
-      <h2 className="text-center my-8 text-4xl font-bold tracking-wide">
-        Catofe's Menu
-      </h2>
+      <h1 className="mt-6 mb-4 text-3xl font-bold tracking-wider flex flex-row gap-4 justify-center items-center">
+        <IoRestaurant />
+        CATOFE'S MENU
+      </h1>
       <div className="menu-container">
         {products.map((product) => (
           <MenuItem product={product} add={handleAdd} />

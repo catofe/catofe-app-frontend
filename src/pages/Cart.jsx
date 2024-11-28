@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { FaShoppingCart } from "react-icons/fa";
 import { UserContext } from "../App";
 import CartItem from "../components/CartItem";
 import "../styles/Cart.css";
@@ -94,41 +94,59 @@ function Cart() {
   };
 
   return (
-    <div className="cart-container">
-      <div className="items-section">
-        {items.map((item, index) => (
-          <CartItem
-            item={item}
-            index={index}
-            increment={handleIncrement}
-            decrement={handleDecrement}
-            remove={handleRemove}
-          />
-        ))}
-      </div>
-      <div className="checkout-container">
-        <div className="checkout-section">
-          <h2 className="checkout-header">
-            <b>Checkout Info</b>
-          </h2>
-          {items.map((item) => createCheckoutItem(item))}
-          <hr />
-          <div className="checkout-total">
-            <p className="text">
-              <b>Total</b>
-            </p>
-            <p className="total">
-              ₱
-              {items.reduce(
-                (total, item) => total + item.product.price * item.quantity,
-                0,
-              )}
-            </p>
+    <div>
+      <h1 className="mt-6 text-3xl font-bold tracking-wider flex flex-row gap-4 justify-center items-center">
+        <FaShoppingCart />
+        SHOPPING CART
+      </h1>
+      <div className="cart-container lg:mx-32 md:mx-8 mt-6 max-h-dvh">
+        <div className="items-section">
+          <div className="flex flex-row my-3 text-center font-semibold text-gray-500">
+            <p className="basis-6/12">Product</p>
+            <p className="basis-3/12">Quantity</p>
+            <p className="lg:inline md:hidden basis-1/12">Price</p>
+            <p className="md:basis-2/12 lg:basis-1/12">Total</p>
+            <div className="basis-1/12"></div>
           </div>
-          <div className="checkout-footer">
-            <button className="checkout-button" onClick={handleCheckout}>
-              <b>Checkout</b>
-            </button>
+          <div className="overflow-y-scroll max-h-full">
+            {items.map((item, index) => (
+              <CartItem
+                item={item}
+                index={index}
+                increment={handleIncrement}
+                decrement={handleDecrement}
+                remove={handleRemove}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="checkout-container mt-8">
+          <div className="checkout-section">
+            <h2 className="checkout-header">
+              <b>Summary</b>
+            </h2>
+            {items.map((item) => createCheckoutItem(item))}
+            <hr />
+            <div className="checkout-total">
+              <p className="text">
+                <b>Total</b>
+              </p>
+              <p className="total">
+                ₱
+                {items.reduce(
+                  (total, item) => total + item.product.price * item.quantity,
+                  0,
+                )}
+              </p>
+            </div>
+            <div className="checkout-footer">
+              <button
+                className="ml-auto p-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-800 transition-colors"
+                onClick={handleCheckout}
+              >
+                <b>CHECKOUT</b>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -138,7 +156,7 @@ function Cart() {
 
 function createCheckoutItem(item) {
   return (
-    <div className="checkout-item">
+    <div className="checkout-item ">
       <p className="name">{item.product.name}</p>
       <p className="quantity">{item.quantity}x</p>
       <p className="price">₱{item.product.price}</p>

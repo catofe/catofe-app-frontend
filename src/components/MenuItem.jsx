@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/MenuItem.css";
 import { MdEmojiFoodBeverage } from "react-icons/md";
-import { FaShoppingCart, FaGripfire } from "react-icons/fa";
+import { FaCartPlus, FaGripfire } from "react-icons/fa";
 import { PiBreadFill, PiSnowflakeBold } from "react-icons/pi";
 import { RiDrinks2Fill } from "react-icons/ri";
 
@@ -68,8 +68,8 @@ function MenuItem({ product, add }) {
           className="p-2 px-4 rounded text-white bg-blue-500 flex flex-row justify-center items-center hover:bg-blue-600 active:bg-blue-800 transition-colors"
           onClick={() => add(product._id)}
         >
-          <FaShoppingCart className="mr-2" />
-          <b className="text-base">Add To Cart</b>
+          <FaCartPlus className="mr-2 text-xl" />
+          <b className="text-base">ADD TO CART</b>
         </button>
       </div>
     </div>
