@@ -48,10 +48,15 @@ function Menu() {
   };
 
   return (
-    <div className="menu-container mt-4 lg:mx-32 md:mx-8">
-      {products.map((product) => (
-        <MenuItem product={product} add={handleAdd} />
-      ))}
+    <div className="lg:mx-32 md:mx-8">
+      <h2 className="text-center my-8 text-4xl font-bold tracking-wide">
+        Catofe's Menu
+      </h2>
+      <div className="menu-container">
+        {products.map((product) => (
+          <MenuItem product={product} add={handleAdd} />
+        ))}
+      </div>
     </div>
   );
 }
