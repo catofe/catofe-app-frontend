@@ -7,6 +7,7 @@ import MenuItem from "../components/MenuItem";
 function Menu() {
   const [userId, setUserId] = useContext(UserContext);
   const [products, setProducts] = useState([]);
+  const [highestFrequency, setHighestFrequency] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,6 +19,17 @@ function Menu() {
       .get(`http://localhost:3000/api/product/`)
       .then((res) => {
         setProducts(res.data);
+
+        let max = 0;
+        for (let index = 0; index < res.data.length; index++) {
+          const product = res.data[index];
+          if (product.frequency > max) {
+            max = product.frequency;
+          }
+        }
+
+        setHighestFrequency(max);
+
         console.log(res.data);
       })
       .catch((error) => {
@@ -55,7 +67,11 @@ function Menu() {
       </h1>
       <div className="menu-container">
         {products.map((product) => (
-          <MenuItem product={product} add={handleAdd} />
+          <MenuItem
+            product={product}
+            add={handleAdd}
+            highestFrequency={highestFrequency}
+          />
         ))}
       </div>
     </div>

@@ -67,6 +67,10 @@ function Cart() {
   };
 
   const handleCheckout = () => {
+    if (items.length == 0) {
+      return;
+    }
+
     axios
       .put(`http://localhost:3000/api/order/${userId}/generate_order/`)
       .then((res) => {

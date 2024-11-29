@@ -4,16 +4,25 @@ import { FaCartPlus } from "react-icons/fa";
 
 import Tag from "./Tag";
 import PlaceholderIcon from "./PlaceholderIcon";
+import PopularTag from "./PopularTag";
 import menuAssetData from "../modules/menuData";
 
-function MenuItem({ product, add }) {
+function MenuItem({ product, add, highestFrequency }) {
   const [image, setImage] = useState("");
 
-  if (!product.available) {
-    return "";
-  }
-
   useEffect(() => {
+    console.log(
+      product.name,
+      product.frequency,
+      highestFrequency,
+      product.frequency == highestFrequency,
+    );
+    if (!product.available) {
+      return "";
+    }
+
+    console.log(product.category);
+
     setImage(menuAssetData[product.name]);
   }, []);
 
@@ -42,6 +51,7 @@ function MenuItem({ product, add }) {
         <b>{product.name}</b>
       </h3>
       <div className="mb-4 flex flex-row gap-2">
+        {product.frequency == highestFrequency ? <PopularTag /> : ""}
         {product.category.split(" ").map((tag) => {
           return <Tag tag={tag} />;
         })}
