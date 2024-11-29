@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
 import { UserContext } from "../App";
-import { IoRestaurant } from "react-icons/io5";
+import { IoRestaurant, IoReceiptSharp } from "react-icons/io5";
 import CartItem from "../components/CartItem";
 import "../styles/Cart.css";
 
@@ -102,7 +102,7 @@ function Cart() {
             <FaShoppingCart className="text-4xl" />
             Your Cart is Empty
           </div>
-          <div className="flex flex-col mt-4 justify-center items-center">
+          <div className="flex flex-col mt-6 justify-center items-center">
             <button
               className="p-2 px-4 flex flex-row justify-center items-center gap-2 rounded-lg bg-gray-300 text-gray-700 hover:bg-gray-400 active:bg-gray-500 active:text-white hover:shadow-xl active:shadow-md transition-all"
               onClick={() => navigate("/menu")}
@@ -167,9 +167,10 @@ function Cart() {
             </div>
             <div className="checkout-footer">
               <button
-                className="ml-auto p-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-800 transition-colors"
+                className="flex flex-row justify-normal items-center gap-1 ml-auto p-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-800 transition-colors"
                 onClick={handleCheckout}
               >
+                <IoReceiptSharp />
                 <b>CHECKOUT</b>
               </button>
             </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { FaTrash } from "react-icons/fa";
 
 import PlaceholderIcon from "./PlaceholderIcon";
 import "../styles/Order.css";
@@ -27,10 +26,17 @@ function Order({ order }) {
     <div className="p-4 m-4 mb-6 rounded-lg border shadow-lg bg-white hover:shadow-2xl transition-shadow">
       <div className="order-header">
         <p className="id">
-          <b>Order ID:</b> {order._id}
+          <p>
+            <b>Order ID:</b> {order._id}
+          </p>
+          <p>
+            <p>
+              <b>Created At:</b> {new Date(order.createdAt).toLocaleString()}{" "}
+            </p>
+          </p>
         </p>
       </div>
-      {productElement}
+      <div className="mx-8 mt-2 mb-6">{productElement}</div>
       <div className="total">
         <p>
           <b>Total Price: </b>₱{order.total}
