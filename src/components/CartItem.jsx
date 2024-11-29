@@ -1,51 +1,15 @@
 import React from "react";
 import "../styles/CartItem.css";
-import { MdEmojiFoodBeverage } from "react-icons/md";
-import { FaTrash, FaPlus, FaMinus, FaGripfire } from "react-icons/fa";
-import { RiDrinks2Fill } from "react-icons/ri";
-import { PiBreadFill, PiSnowflakeBold } from "react-icons/pi";
+import { FaTrash, FaPlus, FaMinus } from "react-icons/fa";
+import Tag from "./Tag";
+import PlaceholderIcon from "./PlaceholderIcon";
 
 function CartItem({ item, index, increment, decrement, remove }) {
-  const placeholderIcon = () => {
-    if (item.product.category === "food") {
-      return <PiBreadFill />;
-    }
-    if (item.product.category === "beverage hot") {
-      return <MdEmojiFoodBeverage />;
-    }
-    if (item.product.category === "beverage cold") {
-      return <RiDrinks2Fill />;
-    }
-    return <MdEmojiFoodBeverage />;
-  };
-
-  const tagElement = (tag) => {
-    let color = "bg-slate-200";
-    let icon = "";
-    if (tag == "cold") {
-      color = "bg-blue-100";
-      icon = <PiSnowflakeBold />;
-    }
-    if (tag == "hot") {
-      color = "bg-red-100";
-      icon = <FaGripfire />;
-    }
-
-    return (
-      <div
-        className={`${color} px-2 rounded-xl text-gray-600 flex flex-row justify-center items-center gap-1`}
-      >
-        {icon}
-        {tag.charAt(0).toUpperCase() + tag.slice(1)}
-      </div>
-    );
-  };
-
   return (
     <div className="mb-4 mr-2 shadow-lg rounded-lg border border-gray-200 flex flex-row hover:shadow-xl transition-shadow bg-white">
       <div className="flex flex-row basis-6/12 p-3">
         <div className="p-6 mr-4 text-3xl rounded bg-gray-300 flex flex-col justify-center items-center">
-          {placeholderIcon()}
+          <PlaceholderIcon category={item.product.category} />
         </div>
         <div>
           <p className="text-lg mb-2">
@@ -53,7 +17,7 @@ function CartItem({ item, index, increment, decrement, remove }) {
           </p>
           <div className="mb-4 flex flex-row gap-2 md:hidden lg:flex">
             {item.product.category.split(" ").map((tag) => {
-              return tagElement(tag);
+              return <Tag tag={tag} />;
             })}
           </div>
         </div>

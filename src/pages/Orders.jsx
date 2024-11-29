@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { IoReceiptSharp } from "react-icons/io5";
 
 import { UserContext } from "../App";
 import Order from "../components/Order";
@@ -9,7 +10,6 @@ function Orders() {
   const [userId, setUserId] = useContext(UserContext);
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
-
   useEffect(() => {
     if (!userId) {
       navigate("/login");
@@ -19,7 +19,7 @@ function Orders() {
       .get(`http://localhost:3000/api/order/${userId}/populate`)
       .then((res) => {
         console.log(res.data);
-        setOrders(res.data);
+        setOrders(res.data.reverse());
       })
       .catch((error) => {
         console.warn("An error happened. Please check console");
@@ -27,28 +27,17 @@ function Orders() {
       });
   }, []);
 
-  const handleRemove = (index) => {
-    const order = orders[index];
-    const order_id = order._id;
-
-    axios
-      .delete(
-        `http://localhost:3000/api/order/${userId}/delete_order/${order_id}/populate`,
-      )
-      .then((res) => {
-        setOrders(res.data);
-      })
-      .catch((error) => {
-        console.warn("An error happened. Please check console");
-        console.error(error);
-      });
-  };
-
   return (
-    <div>
-      {orders.map((order, index) => (
-        <Order order={order} index={index} remove={handleRemove} />
-      ))}
+    <div className="lg:mx-64 md:mx-16">
+      <h1 className="my-6 text-3xl font-bold tracking-wider flex flex-row gap-4 justify-center items-center">
+        <IoReceiptSharp />
+        YOUR ORDERS
+      </h1>
+      <div>
+        {orders.map((order) => (
+          <Order order={order} />
+        ))}
+      </div>
     </div>
   );
 }

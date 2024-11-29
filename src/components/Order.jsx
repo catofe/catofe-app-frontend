@@ -1,16 +1,16 @@
 import React from "react";
-import { MdEmojiFoodBeverage } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 
+import PlaceholderIcon from "./PlaceholderIcon";
 import "../styles/Order.css";
 
-function Order({ order, index, remove }) {
+function Order({ order }) {
   const instances = order.productInstances;
   const productElement = instances.map((instance) => {
     return (
       <div className="order-item">
         <div className="picture">
-          <MdEmojiFoodBeverage />
+          <PlaceholderIcon category={instance.product.category} />
         </div>
         <div className="details">
           <p>
@@ -24,14 +24,11 @@ function Order({ order, index, remove }) {
   });
 
   return (
-    <div className="order">
+    <div className="p-4 m-4 mb-6 rounded-lg border shadow-lg bg-white hover:shadow-2xl transition-shadow">
       <div className="order-header">
         <p className="id">
           <b>Order ID:</b> {order._id}
         </p>
-        <button className="delete" onClick={() => remove(index)}>
-          <FaTrash />
-        </button>
       </div>
       {productElement}
       <div className="total">
