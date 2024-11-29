@@ -6,15 +6,19 @@ import { RiDrinks2Fill } from "react-icons/ri";
 
 function PlaceholderIcon({ category }) {
   if (category === "food") {
-    return <PiBreadFill />;
+    return <PiBreadFill className="hover:scale-125 transition-transform" />;
   }
   if (category === "beverage hot") {
-    return <MdEmojiFoodBeverage />;
+    return (
+      <MdEmojiFoodBeverage className="hover:scale-125 transition-transform" />
+    );
   }
   if (category === "beverage cold") {
-    return <RiDrinks2Fill />;
+    return <RiDrinks2Fill className="hover:scale-125 transition-transform" />;
   }
-  return <MdEmojiFoodBeverage />;
+  return (
+    <MdEmojiFoodBeverage className="hover:scale-125 transition-transform" />
+  );
 }
 
 export default PlaceholderIcon;

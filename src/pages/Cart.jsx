@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaShoppingCart } from "react-icons/fa";
 import { UserContext } from "../App";
+import { IoRestaurant } from "react-icons/io5";
 import CartItem from "../components/CartItem";
 import "../styles/Cart.css";
 
@@ -93,9 +94,44 @@ function Cart() {
       });
   };
 
+  const cartItems = () => {
+    if (items.length == 0) {
+      return (
+        <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-row gap-4 justify-center drop-shadow-2xl items-center mt-16 text-gray-300 text-2xl font-semibold">
+            <FaShoppingCart className="text-4xl" />
+            Your Cart is Empty
+          </div>
+          <div className="flex flex-col mt-4 justify-center items-center">
+            <button
+              className="p-2 px-4 flex flex-row justify-center items-center gap-2 rounded-lg bg-gray-300 text-gray-700 hover:bg-gray-400 active:bg-gray-500 active:text-white hover:shadow-xl active:shadow-md transition-all"
+              onClick={() => navigate("/menu")}
+            >
+              Checkout our Menu
+              <IoRestaurant />
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div className="overflow-y-scroll max-h-full">
+        {items.map((item, index) => (
+          <CartItem
+            item={item}
+            index={index}
+            increment={handleIncrement}
+            decrement={handleDecrement}
+            remove={handleRemove}
+          />
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div>
-      <h1 className="mt-6 text-3xl font-bold tracking-wider flex flex-row gap-4 justify-center items-center">
+      <h1 className="mt-6 text-3xl font-bold drop-shadow-lg tracking-wider flex flex-row gap-4 justify-center items-center">
         <FaShoppingCart />
         SHOPPING CART
       </h1>
@@ -108,17 +144,7 @@ function Cart() {
             <p className="md:basis-2/12 lg:basis-1/12">Total</p>
             <div className="basis-1/12"></div>
           </div>
-          <div className="overflow-y-scroll max-h-full">
-            {items.map((item, index) => (
-              <CartItem
-                item={item}
-                index={index}
-                increment={handleIncrement}
-                decrement={handleDecrement}
-                remove={handleRemove}
-              />
-            ))}
-          </div>
+          {cartItems()}
         </div>
         <div className="checkout-container mt-8">
           <div className="checkout-section">

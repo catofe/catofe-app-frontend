@@ -11,7 +11,7 @@ function MenuItem({ product, add }) {
   }
 
   return (
-    <div className="p-3 m-4 rounded-lg border-2 bg-white border-slate-200 shadow-lg flex-1 hover:shadow-xl transition-shadow">
+    <div className="p-3 m-4 rounded-lg border bg-white border-slate-200 shadow-lg flex-1 hover:shadow-xl transition-shadow">
       <div className="menu-item-picture hover:scale-115 hover:-translate-y-2 hover:rounded-lg hover:shadow-lg hover:border-slate-900 transition-all">
         <PlaceholderIcon category={product.category} />
       </div>

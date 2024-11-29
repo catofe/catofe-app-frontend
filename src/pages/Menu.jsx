@@ -49,7 +49,7 @@ function Menu() {
 
   return (
     <div className="lg:mx-32 md:mx-8">
-      <h1 className="mt-6 mb-4 text-3xl font-bold tracking-wider flex flex-row gap-4 justify-center items-center">
+      <h1 className="mt-6 mb-4 text-3xl drop-shadow-lg font-bold tracking-wider flex flex-row gap-4 justify-center items-center">
         <IoRestaurant />
         CATOFE'S MENU
       </h1>
