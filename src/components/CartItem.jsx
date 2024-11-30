@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/CartItem.css";
 import { FaTrash, FaPlus, FaMinus } from "react-icons/fa";
 import Tag from "./Tag";
 import PlaceholderIcon from "./PlaceholderIcon";
+import Placeholder from "./Placeholder";
+import ProductPicture from "./ProductPicture";
+import menuAssetData from "../modules/menuData";
 
 function CartItem({ item, index, increment, decrement, remove }) {
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    setImage(menuAssetData[item.product.name]);
+  }, []);
+
+  const productPicture = () => {
+    if (image == undefined) {
+      return (
+        <Placeholder
+          category={item.product.category}
+          className="p-6 mr-4 text-3xl rounded bg-gray-300 "
+        />
+      );
+    }
+    return (
+      <ProductPicture
+        src={image}
+        className="p-10 mr-4 rounded drop-shadow-lg"
+      />
+    );
+  };
+
   return (
     <div className="mb-4 mr-2 shadow-lg rounded-lg border border-gray-200 flex flex-row hover:shadow-xl transition-shadow bg-white">
       <div className="flex flex-row basis-6/12 p-3">
-        <div className="p-6 mr-4 text-3xl rounded bg-gray-300 flex flex-col justify-center items-center">
-          <PlaceholderIcon category={item.product.category} />
-        </div>
+        {productPicture()}
         <div>
           <p className="text-lg mb-2">
             <b>{item.product.name}</b>

@@ -41,7 +41,7 @@ function MenuItem({ product, add, highestFrequency }) {
     return (
       <ProductPicture
         src={menuAssetData[product.name]}
-        className="p-16 py-[7.5rem] mb-4 text-5xl rounded hover:scale-115 hover:-translate-y-2 hover:rounded-lg hover:drop-shadow-lg hover:border-slate-900 transition-all"
+        className="p-16 py-[7.5rem] mb-4 text-5xl rounded drop-shadow-md hover:scale-115 hover:-translate-y-2 hover:rounded-lg hover:drop-shadow-lg hover:border-slate-900 transition-all"
       />
     );
   };
