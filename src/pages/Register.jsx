@@ -53,7 +53,7 @@ function Register() {
       return;
     }
 
-    if (registrationInfo.password == "") {
+    if (registrationInfo.confirm == "") {
       alert("Please enter confirm your password.");
       return;
     }
@@ -71,19 +71,18 @@ function Register() {
       .post(`http://localhost:3000/api/user/register/`, user)
       .then((res) => {
         console.log("Request to create new user was successful.");
-      })
-      .catch((error) => {
-        console.warn("An error happened. Please check console");
-        console.error(error);
-      });
-
-    axios
-      .get(
-        `http://localhost:3000/api/user/auth/${registrationInfo.email}/${registrationInfo.password}`,
-      )
-      .then((res) => {
-        setUserId(res.data);
-        navigate("/");
+        axios
+          .get(
+            `http://localhost:3000/api/user/auth/${registrationInfo.email}/${registrationInfo.password}`,
+          )
+          .then((res) => {
+            setUserId(res.data);
+            navigate("/");
+          })
+          .catch((error) => {
+            console.warn("An error happened. Please check console");
+            console.error(error);
+          });
       })
       .catch((error) => {
         console.warn("An error happened. Please check console");

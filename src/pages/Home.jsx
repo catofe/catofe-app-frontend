@@ -2,8 +2,6 @@ import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 
-import Menu from "../components/Menu";
-
 function Home() {
   const navigate = useNavigate();
   const [userId, setUserId] = useContext(UserContext);
@@ -16,8 +14,7 @@ function Home() {
 
   return (
     <div>
-      <Menu />
-      <p>{userId}</p>
+      <p>This is the Home Page</p>
     </div>
   );
 }

@@ -1,14 +1,14 @@
 .cart-container {
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    max-height: 80vh;
 }
 
 .cart-container .items-section {
     flex: 2;
 }
 
-.cart-container .checkout-container {
+.checkout-container {
     flex: 1;
 }
 

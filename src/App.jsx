@@ -14,8 +14,8 @@ import Menu from "./pages/Menu";
 export const UserContext = createContext();
 
 function App() {
-  // const [userId, setUserId] = useState(null);
-  const [userId, setUserId] = useState("673d43e49573d461ff5c97df");
+  const [userId, setUserId] = useState(null);
+  // const [userId, setUserId] = useState("673d43e49573d461ff5c97df");
 
   return (
     <UserContext.Provider value={[userId, setUserId]}>
