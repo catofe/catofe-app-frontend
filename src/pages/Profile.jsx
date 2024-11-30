@@ -4,7 +4,7 @@ import { UserContext } from "../App";
 import { FaUser } from "react-icons/fa";
 
 import ChangePasswordForm from "../components/ChangePasswordForm";
-import DeleteAccountForm from "../components/DeleteAccountForm";
+import ChangePassword from "../components/ChangePassword";
 import Logout from "../components/Logout";
 import Delete from "../components/Delete";
 
@@ -55,13 +55,8 @@ function Profile() {
         </div>
       </div>
       <Logout />
+      <ChangePassword />
       <Delete />
-      <div className="profile-card profile-change-password">
-        <p>
-          <b>Change Password</b>
-        </p>
-        <ChangePasswordForm />
-      </div>
     </div>
   );
 }
