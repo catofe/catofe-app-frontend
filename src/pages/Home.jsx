@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <div>
-      <p>{userId}</p>
+      <p>This is the Home Page</p>
     </div>
   );
 }

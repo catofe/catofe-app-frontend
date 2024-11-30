@@ -12,9 +12,7 @@ function Navbar() {
   } else {
     content = (
       <nav className="navbar">
-        <a href="/" className="navbar-logo">
-          Catofe
-        </a>
+        <Link to="/">CATOFE</Link>
         <ul>
           <Link to="/menu">Menu</Link>
           <Link to="/cart">Cart</Link>
