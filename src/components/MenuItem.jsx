@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/MenuItem.css";
-import { FaCartPlus } from "react-icons/fa";
+import { FaCartPlus, FaCheck } from "react-icons/fa";
 
 import Tag from "./Tag";
 import PopularTag from "./PopularTag";
@@ -12,6 +12,7 @@ import menuAssetData from "../modules/menuData";
 
 function MenuItem({ product, add, highestFrequency }) {
   const [image, setImage] = useState("");
+  const [isAdded, setisAdded] = useState(false);
 
   useEffect(() => {
     console.log(
@@ -28,6 +29,15 @@ function MenuItem({ product, add, highestFrequency }) {
 
     setImage(menuAssetData[product.name]);
   }, []);
+
+  const handleAdd = (id) => {
+    if (isAdded) {
+      return;
+    }
+
+    setisAdded(true);
+    add(id);
+  };
 
   const itemImage = () => {
     if (image == undefined) {
@@ -65,11 +75,15 @@ function MenuItem({ product, add, highestFrequency }) {
           <b>₱ {product.price}.00</b>
         </p>
         <button
-          className="p-2 px-4 rounded text-white bg-blue-500 flex flex-row justify-center items-center hover:bg-blue-600 active:bg-blue-800 transition-colors"
-          onClick={() => add(product._id)}
+          className={`p-2 px-4 rounded text-white  flex flex-row justify-center items-center ${isAdded ? "bg-green-500 hover:bg-green-600 active:bg-green-600" : "bg-blue-500 hover:bg-blue-600 active:bg-blue-800"} bg-blue-500 hover:bg-blue-600 active:bg-blue-800 transition-colors`}
+          onClick={() => handleAdd(product._id)}
         >
-          <FaCartPlus className="mr-2 text-xl" />
-          <b className="text-base">ADD TO CART</b>
+          {isAdded ? (
+            <FaCheck className="mr-2 text-xl" />
+          ) : (
+            <FaCartPlus className="mr-2 text-xl" />
+          )}
+          <b className="text-base">{isAdded ? "ADDED" : "ADD TO CART"}</b>
         </button>
       </div>
     </div>
