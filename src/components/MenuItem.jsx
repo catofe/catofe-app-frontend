@@ -3,8 +3,11 @@ import "../styles/MenuItem.css";
 import { FaCartPlus } from "react-icons/fa";
 
 import Tag from "./Tag";
-import PlaceholderIcon from "./PlaceholderIcon";
 import PopularTag from "./PopularTag";
+import PlaceholderIcon from "./PlaceholderIcon";
+import Placeholder from "./Placeholder";
+import ProductPicture from "./ProductPicture";
+
 import menuAssetData from "../modules/menuData";
 
 function MenuItem({ product, add, highestFrequency }) {
@@ -29,18 +32,17 @@ function MenuItem({ product, add, highestFrequency }) {
   const itemImage = () => {
     if (image == undefined) {
       return (
-        <div
-          className={`p-16 py-24 mb-4 flex flex-row justify-center items-center text-5xl bg-gray-300 rounded hover:scale-115 hover:-translate-y-2 hover:rounded-lg hover:drop-shadow-lg hover:border-slate-900 transition-all`}
-        >
-          <PlaceholderIcon category={product.category} />
-        </div>
+        <Placeholder
+          category={product.category}
+          className="p-16 py-24 mb-4 rounded text-5xl hover:scale-115 hover:-translate-y-2 hover:rounded-lg hover:drop-shadow-lg transition-all"
+        />
       );
     }
     return (
-      <div
-        className={`p-16 py-[7.5rem] mb-4 flex flex-row justify-center items-center text-5xl bg-cover rounded hover:scale-115 hover:-translate-y-2 hover:rounded-lg hover:drop-shadow-lg hover:border-slate-900 transition-all`}
-        style={{ backgroundImage: `url(${menuAssetData[product.name]})` }}
-      ></div>
+      <ProductPicture
+        src={menuAssetData[product.name]}
+        className="p-16 py-[7.5rem] mb-4 text-5xl rounded hover:scale-115 hover:-translate-y-2 hover:rounded-lg hover:drop-shadow-lg hover:border-slate-900 transition-all"
+      />
     );
   };
 
