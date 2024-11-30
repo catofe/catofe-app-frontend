@@ -32,7 +32,7 @@ function CartItem({ item, index, increment, decrement, remove }) {
   };
 
   return (
-    <div className="mb-4 mr-2 shadow-lg rounded-lg border border-gray-200 flex flex-row hover:shadow-xl transition-shadow bg-white">
+    <div className="mb-4 mr-2 ml-4 shadow-lg rounded-lg border border-gray-200 flex flex-row hover:shadow-xl transition-shadow bg-white">
       <div className="flex flex-row basis-6/12 p-3">
         {productPicture()}
         <div>
