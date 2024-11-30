@@ -140,7 +140,7 @@ function Cart() {
         SHOPPING CART
       </h1>
       <div className="cart-container lg:mx-32 md:mx-8 mt-6 max-h-dvh">
-        <div className="items-section">
+        <div className="basis-2/3">
           <div className="flex flex-row my-3 text-center font-semibold text-gray-500">
             <p className="basis-6/12">Product</p>
             <p className="basis-3/12">Quantity</p>
@@ -150,34 +150,32 @@ function Cart() {
           </div>
           {cartItems()}
         </div>
-        <div className="checkout-container mt-8">
-          <div className="checkout-section">
-            <h2 className="checkout-header">
-              <b>Summary</b>
-            </h2>
-            {items.map((item) => createCheckoutItem(item))}
-            <hr />
-            <div className="checkout-total">
-              <p className="text">
-                <b>Total</b>
-              </p>
-              <p className="total">
-                ₱
-                {items.reduce(
-                  (total, item) => total + item.product.price * item.quantity,
-                  0,
-                )}
-              </p>
-            </div>
-            <div className="checkout-footer">
-              <button
-                className="flex flex-row justify-normal items-center gap-1 ml-auto p-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-800 transition-colors"
-                onClick={handleCheckout}
-              >
-                <IoReceiptSharp />
-                <b>CHECKOUT</b>
-              </button>
-            </div>
+        <div className="p-6 mt-12 m-4 basis-1/3 bg-white rounded-xl border border-gray-200 shadow-xl">
+          <h2 className="checkout-header">
+            <b>Summary</b>
+          </h2>
+          {items.map((item) => createCheckoutItem(item))}
+          <hr />
+          <div className="checkout-total">
+            <p className="text">
+              <b>Total</b>
+            </p>
+            <p className="total">
+              ₱
+              {items.reduce(
+                (total, item) => total + item.product.price * item.quantity,
+                0,
+              )}
+            </p>
+          </div>
+          <div className="checkout-footer">
+            <button
+              className="flex flex-row justify-normal items-center gap-1 ml-auto p-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-800 transition-colors"
+              onClick={handleCheckout}
+            >
+              <IoReceiptSharp />
+              <b>CHECKOUT</b>
+            </button>
           </div>
         </div>
       </div>
