@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../App";
+import { FaEdit } from "react-icons/fa";
 import { MdCancel, MdEdit } from "react-icons/md";
 import axios from "axios";
 
@@ -108,7 +109,7 @@ function ChangePassword() {
               className="px-3 py-2 rounded font-bold text-white bg-yellow-600 flex flex-row justify-center items-center gap-2   hover:bg-yellow-700 active:bg-yellow-900 transition-colors"
               onClick={() => handleSubmitForm()}
             >
-              <MdEdit className="text-sm" />
+              <FaEdit className="text-sm" />
               Change Password
             </button>
           </div>

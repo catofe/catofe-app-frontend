@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import { FaUser } from "react-icons/fa";
 
-import ChangePasswordForm from "../components/ChangePasswordForm";
 import ChangePassword from "../components/ChangePassword";
 import Logout from "../components/Logout";
 import Delete from "../components/Delete";
+import ProfilePicture from "../components/ProfilePicture";
+import UserInformation from "../components/UserInformation";
 
 import axios from "axios";
 import "../styles/Profile.css";
@@ -40,19 +41,8 @@ function Profile() {
         PROFILE
       </h1>
       <div className="profile-header">
-        <div className="profile-picture">
-          <div className="profile-icon-background">
-            <FaUser className="profile-icon" />
-          </div>
-        </div>
-        <div className="user-info">
-          <h2>
-            <b>{profile.username}</b>
-          </h2>
-          <p>{profile.email}</p>
-          <p>{profile.contact_no}</p>
-          <p>{profile.createdAt}</p>
-        </div>
+        <ProfilePicture />
+        <UserInformation profile={profile} />
       </div>
       <Logout />
       <ChangePassword />
