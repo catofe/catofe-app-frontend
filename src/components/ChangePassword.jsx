@@ -4,7 +4,7 @@ import { MdCancel, MdEdit } from "react-icons/md";
 import axios from "axios";
 
 function ChangePassword() {
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [userId, setUserId] = useContext(UserContext);
   const [password, setPassword] = useState({
     current_password: "",
@@ -51,6 +51,7 @@ function ChangePassword() {
       )
       .then((res) => {
         console.log(res.data);
+        console.log("Password Change Successful");
         setPassword({
           current_password: "",
           new_password: "",
@@ -75,6 +76,7 @@ function ChangePassword() {
             <input
               type="password"
               className={`${inputStyling}`}
+              value={password.current_password}
               onChange={(e) => handleCurrentPasswordInput(e)}
             />
 
@@ -82,6 +84,7 @@ function ChangePassword() {
             <input
               type="password"
               className={`${inputStyling}`}
+              value={password.new_password}
               onChange={(e) => handleNewPasswordInput(e)}
             />
 
@@ -89,6 +92,7 @@ function ChangePassword() {
             <input
               type="password"
               className={`${inputStyling}`}
+              value={password.confirm_new_password}
               onChange={(e) => handleConfirmNewPasswordInput(e)}
             />
           </div>
