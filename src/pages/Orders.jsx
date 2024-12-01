@@ -61,7 +61,7 @@ function Orders() {
     <div className="lg:mx-64 md:mx-16">
       <h1 className="my-6 text-3xl font-bold tracking-wider drop-shadow-lg flex flex-row gap-4 justify-center items-center">
         <IoReceiptSharp />
-        YOUR ORDERS
+        ORDER HISTORY
       </h1>
       <div>{orderItems()}</div>
     </div>

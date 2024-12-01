@@ -41,7 +41,6 @@ body {
 }
 
 .navbar a {
-    color: inherit;
     text-decoration: none;
     height: 100%;
     display: flex;
