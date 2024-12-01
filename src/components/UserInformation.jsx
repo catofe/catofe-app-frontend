@@ -37,6 +37,15 @@ function UserInformation({ profile }) {
     });
   };
 
+  const handleEditMode = () => {
+    setIsEditing(true);
+    setUserInformation({
+      username: profile.username,
+      email: profile.email,
+      contact_no: profile.contact_no,
+    });
+  };
+
   const handleSubmit = () => {
     if (
       userInformation.username == "" ||
@@ -141,7 +150,7 @@ function UserInformation({ profile }) {
             <h2 className="font-bold">User Information</h2>
             <button
               className="ml-auto px-3 py-2 rounded flex flex-row justify-center items-center gap-2 bg-gray-200 hover:bg-gray-300 active:bg-gray-400 transition-colors"
-              onClick={() => setIsEditing(true)}
+              onClick={() => handleEditMode()}
             >
               <MdEdit />
               Edit

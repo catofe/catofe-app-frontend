@@ -43,6 +43,7 @@ function MenuItem({ product, add, highestFrequency }) {
       return;
     }
     add(id);
+    setisAdded(true);
   };
 
   const itemImage = () => {

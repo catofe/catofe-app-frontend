@@ -111,7 +111,7 @@ function Cart() {
               className="p-2 px-4 flex flex-row justify-center items-center gap-2 rounded-lg bg-gray-300 text-gray-700 hover:bg-gray-400 active:bg-gray-500 active:text-white hover:shadow-xl active:shadow-md transition-all"
               onClick={() => navigate("/menu")}
             >
-              Checkout our Menu
+              Check out our Menu
               <IoRestaurant />
             </button>
           </div>
