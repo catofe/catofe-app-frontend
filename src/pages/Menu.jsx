@@ -11,10 +11,6 @@ function Menu() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userId) {
-      navigate("/login");
-    }
-
     axios
       .get(`http://localhost:3000/api/product/`)
       .then((res) => {

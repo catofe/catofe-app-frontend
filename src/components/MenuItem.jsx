@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../styles/MenuItem.css";
 import { FaCartPlus, FaCheck } from "react-icons/fa";
 
@@ -8,11 +8,15 @@ import PlaceholderIcon from "./PlaceholderIcon";
 import Placeholder from "./Placeholder";
 import ProductPicture from "./ProductPicture";
 
+import { UserContext } from "../App";
+import { useNavigate } from "react-router-dom";
 import menuAssetData from "../modules/menuData";
 
 function MenuItem({ product, add, highestFrequency }) {
+  const [user, setUser] = useContext(UserContext);
   const [image, setImage] = useState("");
   const [isAdded, setisAdded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(
@@ -34,8 +38,10 @@ function MenuItem({ product, add, highestFrequency }) {
     if (isAdded) {
       return;
     }
-
-    setisAdded(true);
+    if (user == null || user == "" || user == undefined) {
+      navigate("/");
+      return;
+    }
     add(id);
   };
 
