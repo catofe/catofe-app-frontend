@@ -5,6 +5,9 @@ import { FaEdit } from "react-icons/fa";
 import axios from "axios";
 
 function UserInformation({ profile }) {
+  const [emptyField, setEmptyField] = useState(false);
+  const [invalidEmail, setInvalidEmail] = useState(false);
+  const [invalidPhone, setInvalidPhone] = useState(false);
   const [userId, setUserId] = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
   const [userInformation, setUserInformation] = useState({
@@ -12,6 +15,16 @@ function UserInformation({ profile }) {
     email: "",
     contact_no: "",
   });
+
+  const validatePhoneNumber = (p) => {
+    const patt = /^(\+?\d{1,3}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/;
+    return patt.test(p);
+  };
+
+  const validateEmail = (e) => {
+    const patt = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return patt.test(e);
+  };
 
   const handleUsernameInput = (e) => {
     console.log(userInformation);
@@ -35,6 +48,9 @@ function UserInformation({ profile }) {
       email: profile.email,
       contact_no: profile.contact_no,
     });
+    setInvalidEmail(false);
+    setInvalidPhone(false);
+    setEmptyField(false);
   };
 
   const handleEditMode = () => {
@@ -47,12 +63,14 @@ function UserInformation({ profile }) {
   };
 
   const handleSubmit = () => {
+    setEmptyField(false);
+    setInvalidEmail(false);
     if (
       userInformation.username == "" ||
       userInformation.username == undefined ||
       userInformation.username == null
     ) {
-      console.log("Username is empty");
+      setEmptyField(true);
       return;
     }
     if (
@@ -60,7 +78,7 @@ function UserInformation({ profile }) {
       userInformation.email == undefined ||
       userInformation.email == null
     ) {
-      console.log("Email is empty");
+      setEmptyField(true);
       return;
     }
     if (
@@ -68,7 +86,17 @@ function UserInformation({ profile }) {
       userInformation.contact_no == undefined ||
       userInformation.contact_no == null
     ) {
-      console.log("Contact No is empty");
+      setEmptyField(true);
+      return;
+    }
+
+    if (!validateEmail(userInformation.email)) {
+      setInvalidEmail(true);
+      return;
+    }
+
+    if (!validatePhoneNumber(userInformation.contact_no)) {
+      setInvalidPhone(true);
       return;
     }
 
@@ -85,6 +113,33 @@ function UserInformation({ profile }) {
       });
   };
 
+  const showErrorMessage = () => {
+    const errorStyling =
+      "mt-4 mb-4 p-2 w-full rounded flex flex-row gap-2 grow-0 basis-0 justify-center items-center bg-red-100 text-red-500 text-center text-wrap";
+    if (invalidEmail) {
+      return (
+        <div className={`${errorStyling}`}>
+          The email you entered is invalid
+        </div>
+      );
+    }
+    if (invalidPhone) {
+      return (
+        <div className={`${errorStyling}`}>
+          The phone number you entered is invalid
+        </div>
+      );
+    }
+    if (emptyField) {
+      return (
+        <div className={`${errorStyling}`}>
+          You have one or more empty fields
+        </div>
+      );
+    }
+    return "";
+  };
+
   const showEditForm = () => {
     if (isEditing) {
       let inputStyling = "p-2 mt-2 mb-4 rounded border-2 border-slate-300";
@@ -93,6 +148,7 @@ function UserInformation({ profile }) {
           <h2 className="font-bold">Edit User Information</h2>
           <hr className="my-4" />
           <div className="flex flex-col mx-8">
+            {showErrorMessage()}
             <label htmlFor="">Username</label>
             <input
               type="text"
