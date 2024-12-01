@@ -215,10 +215,27 @@ function UserInformation({ profile }) {
           <hr className="my-4" />
           <div className="flex flex-row">
             <div>
-              <h2>{profile.username}</h2>
-              <p>{profile.email}</p>
-              <p>{profile.contact_no}</p>
-              <p>{profile.createdAt}</p>
+              <label className="text-md text-gray-500 font-semibold">
+                Username
+              </label>
+              <p className="text-lg mb-4">{profile.username}</p>
+
+              <label className="text-md text-gray-500 font-semibold">
+                Email
+              </label>
+              <p className="text-lg mb-4">{profile.email}</p>
+
+              <label className="text-md text-gray-500 font-semibold">
+                Contact No.
+              </label>
+              <p className="text-lg mb-4">{profile.contact_no}</p>
+
+              <label className="text-md text-gray-500 font-semibold">
+                Registration Date
+              </label>
+              <p className="text-lg mb-4">
+                {new Date(profile.createdAt).toLocaleString()}
+              </p>
             </div>
           </div>
         </div>
