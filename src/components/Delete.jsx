@@ -49,13 +49,12 @@ function Delete() {
             </p>
           </label>
           {confirmation == "I want to delete this account!" ? (
-            <div className="flex flex-row gap-2 justify-center items-center text-center text-green-500 mt-4 font-thin">
+            <div className="p-2 mx-8 my-4 roudned flex flex-row gap-2 justify-center items-center text-center bg-green-100 text-green-500 mt-4 font-thin">
               <FaCheck />
               <p>Input matches with pharse. You can delete your account now.</p>
             </div>
           ) : (
-            <div className="flex flex-row gap-2 justify-center items-center text-center text-red-500 mt-4 font-thin">
-              <ImCross />
+            <div className="p-2 mx-8 my-4 rounded flex flex-row gap-2 justify-center items-center text-center bg-red-100 text-red-500 mt-4 font-thin">
               <p>
                 Input does not match with phrase. You cannot delete your account
                 now.
