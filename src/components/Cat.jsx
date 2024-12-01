@@ -8,7 +8,7 @@ function Cat({ src, name, description }) {
         style={{ backgroundImage: `url(${src})` }}
       ></div>
       <div className="mb-2 font-bold text-lg">{name}</div>
-      <div>{description}</div>
+      <div className="text-justify text-gray-600">{description}</div>
     </div>
   );
 }
