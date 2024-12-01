@@ -48,6 +48,9 @@ function UserInformation({ profile }) {
       email: profile.email,
       contact_no: profile.contact_no,
     });
+    setInvalidEmail(false);
+    setInvalidPhone(false);
+    setEmptyField(false);
   };
 
   const handleEditMode = () => {
