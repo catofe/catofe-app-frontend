@@ -39,7 +39,7 @@ function MenuItem({ product, add, highestFrequency }) {
       return;
     }
     if (user == null || user == "" || user == undefined) {
-      navigate("/");
+      navigate("/login");
       return;
     }
     add(id);
