@@ -5,6 +5,10 @@ import { MdCancel, MdEdit } from "react-icons/md";
 import axios from "axios";
 
 function ChangePassword() {
+  const [wrongPassword, setWrongPassword] = useState(false);
+  const [emptyField, setEmptyField] = useState(false);
+  const [confirmError, setConfirmError] = useState(false);
+
   const [isEditing, setIsEditing] = useState(false);
   const [userId, setUserId] = useContext(UserContext);
   const [password, setPassword] = useState({
@@ -15,6 +19,18 @@ function ChangePassword() {
 
   const handleShowForm = () => {
     setIsChanging(true);
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setPassword({
+      current_password: "",
+      new_password: "",
+      confirm_new_password: "",
+    });
+    setEmptyField(false);
+    setWrongPassword(false);
+    setConfirmError(false);
   };
 
   const handleCurrentPasswordInput = (e) => {
@@ -39,10 +55,55 @@ function ChangePassword() {
     console.log(password);
   };
 
+  const showErrorMessage = () => {
+    const errorStyling =
+      "mb-6 p-2 w-full rounded flex flex-row gap-2 grow-0 basis-0 justify-center items-center bg-red-100 text-red-500 text-center text-wrap";
+    if (wrongPassword) {
+      return (
+        <div className={`${errorStyling}`}>
+          The password you entered is incorrect
+        </div>
+      );
+    }
+    if (confirmError) {
+      return (
+        <div className={`${errorStyling}`}>
+          You new password does not match with your confirmation
+        </div>
+      );
+    }
+    if (emptyField) {
+      return (
+        <div className={`${errorStyling}`}>
+          You have one or more empty fields
+        </div>
+      );
+    }
+    return "";
+  };
+
   const handleSubmitForm = () => {
+    setEmptyField(false);
+    setWrongPassword(false);
+    setConfirmError(false);
+
+    if (password.current_password == "") {
+      setEmptyField(true);
+      return;
+    }
+
+    if (password.new_password == "") {
+      setEmptyField(true);
+      return;
+    }
+
+    if (password.confirm_new_password == "") {
+      setEmptyField(true);
+      return;
+    }
+
     if (password.new_password != password.confirm_new_password) {
-      console.log("Confirmation Failed");
-      setIsEditing(false);
+      setConfirmError(true);
       return;
     }
 
@@ -63,7 +124,9 @@ function ChangePassword() {
       .catch((error) => {
         console.warn("An error happened. Please check console");
         console.error(error);
-        setIsEditing(false);
+        setWrongPassword(true);
+        setConfirmError(false);
+        setEmptyField(false);
       });
   };
 
@@ -73,6 +136,7 @@ function ChangePassword() {
       return (
         <div className="flex flex-col">
           <div className="flex flex-col mx-8 mt-4">
+            {showErrorMessage()}
             <label htmlFor="">Current Password</label>
             <input
               type="password"
@@ -100,7 +164,7 @@ function ChangePassword() {
           <div className="flex flex-row mt-8 justify-end gap-4">
             <button
               className="p-1 pr-2 pl-2 rounded font-bold text-red-500 bg-white flex flex-row justify-center items-center gap-2 border-3 border-red-200 hover:bg-red-100 hover:border-red-300 active:bg-red-300 active:border-red-400 active:text-red-900 transition-colors"
-              onClick={() => setIsEditing(false)}
+              onClick={() => handleCancel()}
             >
               <MdCancel className="text-md" />
               Cancel
