@@ -1,6 +1,6 @@
 .menu-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 
 .menu-item-picture {
@@ -25,6 +25,10 @@
 
     margin: 1rem;
     padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: bott;
 }
 
 .menu-item-name {
@@ -34,6 +38,10 @@
 .menu-item-price {
     margin-bottom: 1rem;
     font-size: 20px;
+}
+
+.menu-item-description {
+    height: 3rem;
 }
 
 .menu-item-button {
