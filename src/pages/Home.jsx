@@ -34,10 +34,19 @@ function Home() {
           })}
         </div>
       </div>
-      <h2 className="mt-6 mb-4 text-3xl text-gray-400 font-semibold tracking-wider flex flex-row gap-4 justify-center items-center">
-        <IoRestaurant />
-        CHECK OUT OUR MENU
-      </h2>
+      <div className="flex flex-col mt-16 justify-center items-center">
+        <h2 className="mt-6 mb-4 text-3xl text-gray-400 font-semibold tracking-wider flex flex-row gap-4 justify-center items-center">
+          <IoRestaurant />
+          CHECK OUT OUR MENU
+        </h2>
+        <button
+          className="mb-64 mt-8 p-4 px-8 rounded flex flex-row justify-center items-center gap-4 text-2xl bg-gray-300 hover:bg-gray-400 active:bg-gray-500 transition-all active:text-white"
+          onClick={() => navigate("/menu")}
+        >
+          <IoRestaurant />
+          <p>Menu</p>
+        </button>
+      </div>
     </div>
   );
 }
