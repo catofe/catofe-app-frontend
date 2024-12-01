@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { IoMail, IoLockClosed } from "react-icons/io5";
-import { ImCross } from "react-icons/im";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -10,7 +9,7 @@ import "../styles/Login.css";
 function Login() {
   const inputStyling = "p-2 mb-4 rounded border-2 border-slate-300";
   const [userId, setUserId] = useContext(UserContext);
-  const [incorrect, setIncorrect] = useState(true);
+  const [incorrect, setIncorrect] = useState(false);
   const [authInfo, setAuthInfo] = useState({
     email: "",
     password: "",
@@ -58,7 +57,6 @@ function Login() {
         <p>Login to your catofe account</p>
         {incorrect ? (
           <div className="mt-4 p-2 rounded flex flex-row gap-2 justify-center items-center bg-red-100 text-red-500 text-center">
-            <ImCross className="text-sm" />
             <p>Your email or password is incorrect.</p>
           </div>
         ) : (
@@ -82,7 +80,7 @@ function Login() {
         </div>
         <input
           className={`${inputStyling}`}
-          placeholder="Enter yout password here..."
+          placeholder="Enter your password here..."
           type="password"
           onChange={(e) => handlePasswordInput(e)}
         />
