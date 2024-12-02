@@ -8,6 +8,8 @@ function UserInformation({ profile }) {
   const [emptyField, setEmptyField] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
   const [invalidPhone, setInvalidPhone] = useState(false);
+  const [successful, setSuccessful] = useState(false);
+
   const [userId, setUserId] = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
   const [userInformation, setUserInformation] = useState({
@@ -55,6 +57,7 @@ function UserInformation({ profile }) {
 
   const handleEditMode = () => {
     setIsEditing(true);
+    setSuccessful(false);
     setUserInformation({
       username: profile.username,
       email: profile.email,
@@ -106,6 +109,7 @@ function UserInformation({ profile }) {
         console.log(userInformation);
         console.log(res.data);
         setIsEditing(false);
+        setSuccessful(true);
       })
       .catch((error) => {
         console.warn("An error happened. Please check console");
@@ -134,6 +138,18 @@ function UserInformation({ profile }) {
       return (
         <div className={`${errorStyling}`}>
           You have one or more empty fields
+        </div>
+      );
+    }
+    return "";
+  };
+
+  const showSuccess = () => {
+    if (successful) {
+      return (
+        <div className="p-2 my-4 roudned flex flex-row gap-2 justify-center items-center text-center bg-green-100 text-green-500 mt-4 font-thin">
+          User Information succesfully changed. User Information will be updated
+          soon.
         </div>
       );
     }
@@ -213,6 +229,7 @@ function UserInformation({ profile }) {
             </button>
           </div>
           <hr className="my-4" />
+          {showSuccess()}
           <div className="flex flex-row">
             <div>
               <label className="text-md text-gray-500 font-semibold">
