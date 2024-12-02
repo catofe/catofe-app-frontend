@@ -59,6 +59,7 @@ function Cart() {
       )
       .then((res) => {
         setItems(res.data);
+        console.log(res.data);
       })
       .catch((error) => {
         console.warn("An error happened. Please check console");
@@ -127,6 +128,7 @@ function Cart() {
             increment={handleIncrement}
             decrement={handleDecrement}
             remove={handleRemove}
+            key={item._id}
           />
         ))}
       </div>
