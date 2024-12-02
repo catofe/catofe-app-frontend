@@ -204,7 +204,10 @@ function ChangePassword() {
           <div className="mt-8 flex flex-row justify-end">
             <button
               className="px-3 py-2 rounded font-bold text-white bg-yellow-600 flex flex-row justify-center items-center gap-2   hover:bg-yellow-700 active:bg-yellow-900 transition-colors"
-              onClick={() => setIsEditing(true)}
+              onClick={() => {
+                setIsEditing(true);
+                setSuccessful(false);
+              }}
             >
               <MdEdit className="text-lg" />
               Edit Password
