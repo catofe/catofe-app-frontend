@@ -8,6 +8,7 @@ function ChangePassword() {
   const [wrongPassword, setWrongPassword] = useState(false);
   const [emptyField, setEmptyField] = useState(false);
   const [confirmError, setConfirmError] = useState(false);
+  const [successful, setSuccessful] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
   const [userId, setUserId] = useContext(UserContext);
@@ -82,6 +83,17 @@ function ChangePassword() {
     return "";
   };
 
+  const showSuccess = () => {
+    if (successful) {
+      return (
+        <div className="p-2 my-4 roudned flex flex-row gap-2 justify-center items-center text-center bg-green-100 text-green-500 mt-4 font-thin">
+          Password succesfully changed.
+        </div>
+      );
+    }
+    return "";
+  };
+
   const handleSubmitForm = () => {
     setEmptyField(false);
     setWrongPassword(false);
@@ -120,6 +132,7 @@ function ChangePassword() {
           confirm_new_password: "",
         });
         setIsEditing(false);
+        setSuccessful(true);
       })
       .catch((error) => {
         console.warn("An error happened. Please check console");
@@ -183,6 +196,7 @@ function ChangePassword() {
     if (!isEditing) {
       return (
         <div>
+          {showSuccess()}
           <p>
             Want to change your password? Click the button to change your
             Password.
